@@ -199,7 +199,7 @@ export default function HallmarkIcons() {
   };
 
   return (
-    <section className="bg-white border-t border-b px-14 py-20 border-zinc-300 overflow-hidden">
+    <section className="bg-white border-t border-b px-4 md:px-14 py-12 md:py-20 border-zinc-300 overflow-hidden">
       <div
         ref={containerRef}
         className={`flex overflow-x-auto snap-x snap-mandatory scrollbar-hidden relative ${
@@ -208,9 +208,9 @@ export default function HallmarkIcons() {
         style={{
           scrollBehavior: "smooth",
           maskImage:
-            "linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)",
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)",
         }}
         onMouseDown={handleDragStart}
         onMouseMove={handleDragMove}
@@ -220,14 +220,14 @@ export default function HallmarkIcons() {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <div className="flex gap-16 px-12">
+        <div className="flex gap-8 md:gap-16 px-4 md:px-12">
           {infiniteHallmarks.map((mark, index) => (
             <div
               key={`${mark.title}-${index}`} // Unique key for duplicated items
-              className="flex items-start gap-4 snap-center min-w-[300px] transition-opacity duration-300"
+              className="flex items-start gap-3 md:gap-4 snap-center min-w-[240px] md:min-w-[300px] transition-opacity duration-300"
             >
               {/* Icon */}
-              <div className="w-10 h-10 relative shrink-0">
+              <div className="w-8 h-8 md:w-10 md:h-10 relative shrink-0">
                 <Image
                   src={mark.image}
                   alt={mark.title}
@@ -251,8 +251,6 @@ export default function HallmarkIcons() {
           ))}
         </div>
       </div>
-
-
     </section>
   );
 }

@@ -5,7 +5,8 @@ import Image from "next/image"
 export default function ModernRodeoSection() {
   return (
     <section className="h-screen overflow-hidden">
-      <Image src="https://www.sergedenimes.com/cdn/shop/files/03_811b7584-f81b-4beb-818c-873b658db84e.jpg?v=1751445580&width=1426" alt="Modern Rodeo Collection" fill className="object-cover" priority />
+      <Image src="https://www.sergedenimes.com/cdn/shop/files/03_811b7584-f81b-4beb-818c-873b658db84e.jpg?v=1751445580&width=1426" alt="Modern Rodeo Collection" fill className="object-cover lg:block hidden" priority />
+      <Image src="https://www.sergedenimes.com/cdn/shop/files/01_0d6e8f02-7735-48a4-bc30-205107671dbb.jpg?v=1751362357&width=823" alt="Modern Rodeo Collection" fill className="  object-cover block lg:hidden" priority />
 
       {/* Overlay Content */}
       <div className="absolute inset-0 flex items-end justify-center">

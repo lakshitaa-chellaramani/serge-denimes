@@ -48,11 +48,17 @@ export default function Hero() {
 
       {/* Hero Background */}
       <section className="fixed top-0 left-0 h-screen w-full flex flex-col justify-end text-white overflow-hidden -z-10">
-        <img
+        {/* <img
           src="https://www.sergedenimes.com/cdn/shop/files/03_811b7584-f81b-4beb-818c-873b658db84e.jpg?v=1751445580&width=1946"
           alt="Modern Rodeo"
-          className="object-cover object-center w-full h-full"
+          className="object-cover lg:block hidden object-center w-full h-full"
         />
+        <img
+         
+          src="https://www.sergedenimes.com/cdn/shop/files/01_0d6e8f02-7735-48a4-bc30-205107671dbb.jpg?v=1751362357&width=823"
+          alt="Modern Rodeo"
+          className="object-cover  block lg:hidden w-full h-[50svh]"
+        /> */}
         <div className="absolute inset-0 flex items-end justify-center">
           <div className="text-center text-white">
             <h1 className="text-2xl md:text-[22px] font-serif mb-4 tracking-wide">
@@ -77,14 +83,19 @@ export default function Hero() {
           <FiMenu />
         </button>
 
-        <div className="flex  items-center text-center">
+        <div className="flex   items-center justify-center text-center">
           <h1
-            className={`text-2xl font-medium transition-colors duration-300 ${
+            className={`text-2xl lg:block hidden font-medium transition-colors duration-300 ${
               isScrolled ? "text-black" : "text-white m-5 tracking-wide"
             }`}
           >
             SERGE DENIMES
           </h1>
+          <img
+            src={isScrolled ? "/images/mobileblacklogo.png" : "/images/mobilewhitelogo.png"}
+            alt="Serge DeNimes Logo"
+            className={`object-cover block lg:hidden ml-7 object-center w-10 ${isScrolled ? "mt-0" : "mt-3"} h-10`}
+          />
         </div>
 
         <div className={`text-xl flex items-center ${isScrolled ? " " : "mt-3"} gap-4`}>
@@ -95,7 +106,7 @@ export default function Hero() {
 
       {/* Nav Links */}
       <nav
-        className={`md:flex w-full py-2 mt-4 pb-6 font-normal tracking-wide px-4 md:px-8 text-xs justify-center space-x-6 fixed top-[64px] z-40 transition-all duration-300 ${
+        className={`md:flex hidden md:block  w-full py-2 mt-4 pb-6 font-normal tracking-wide px-4 md:px-8 text-xs justify-center space-x-6 fixed top-[64px] z-40 transition-all duration-300 ${
           showMenu
             ? isScrolled
               ? "opacity-100 pointer-events-auto shadow-md bg-white text-black "
@@ -117,7 +128,7 @@ export default function Hero() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full max-w-[450px] sm:w-[49svw] overflow-y-auto bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-full w-full sm:w-[49svw] overflow-y-auto bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >

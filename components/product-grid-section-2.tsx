@@ -65,7 +65,7 @@ export default function ProductGridSection2() {
   return (
     <section className="pb-10 mt-9 px-6">
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-0">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-0">
           {products.map((product) => (
             <div key={product.id} className="group cursor-pointer">
                 <div className="bg-gray-100 aspect-square mb-4 overflow-hidden relative">

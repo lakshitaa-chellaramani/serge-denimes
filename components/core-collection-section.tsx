@@ -12,7 +12,15 @@ export default function CoreCollectionSection() {
             alt="Core Collection"
             fill
             style={{ objectFit: "cover" }}
-            className=""
+            className="hidden lg:block"
+            priority
+          />
+           <Image
+            src="https://www.sergedenimes.com/cdn/shop/files/Core3.jpg?v=1744287307&width=823"
+            alt="Core Collection"
+            fill
+            style={{ objectFit: "cover" }}
+            className="block lg:hidden"
             priority
           />
 

@@ -4,7 +4,7 @@ import { FaArrowRight } from 'react-icons/fa';
 
 export default function Newsletter() {
   return (
-    <section className="py-12 pb-28 px-4 bg-white text-center">
+    <section className="py-12 pb-28 px-16 bg-white text-center lg:px-4">
       <h2 className="text-lg font-semibold tracking-wide source-sans-3">JOIN THE COMMUNITY</h2>
       <p className="text-sm text-gray-800 mt-1 font-normal source-sans-3">SIGN UP TO OUR MAILING LIST FOR EXCLUSIVE ACCESS.</p>
 

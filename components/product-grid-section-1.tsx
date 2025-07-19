@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { useState } from "react"
 
 const products = [
   {
@@ -59,17 +60,51 @@ const products = [
     image: "https://www.sergedenimes.com/cdn/shop/files/Silver-Rodeo-Ring-Product-Shot-Grey.jpg?v=1744293691&width=1426",
     hoverImage: "https://www.sergedenimes.com/cdn/shop/files/Silver-Rodeo-Ring-Product-Shot-2-Grey.jpg?v=1744293690&width=1426"
   },
-  
 ]
 
 export default function ProductGridSection1() {
   return (
-    <section className="pb-10 -mt-14 px-6">
+    <section className="lg:pb-10 pb-5 lg:-mt-14 -mt-20 px-4 lg:px-6">
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mx-0">
+        {/* Mobile Slider */}
+        <div className="md:hidden">
+          <div className="overflow-x-auto">
+            <div className="flex space-x-4 pb-4">
+              {products.map((product) => (
+                <div key={product.id} className="flex-shrink-0 w-64">
+                  <div className="group cursor-pointer">
+                    <div className="bg-gray-100 aspect-square mb-3 overflow-hidden relative rounded-sm">
+                      <Image
+                        src={product.image || "/placeholder.svg"}
+                        alt={product.name}
+                        width={300}
+                        height={300}
+                        className={`w-full h-full object-cover transition-opacity duration-300 ${product.hoverImage ? "group-hover:opacity-0" : ""}`}
+                      />
+                      {product.hoverImage && (
+                        <Image
+                          src={product.hoverImage}
+                          alt={product.name + " hover"}
+                          width={300}
+                          height={300}
+                          className="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                        />
+                      )}
+                    </div>
+                    <h3 className="text-xs font-medium mb-1 tracking-wide text-gray-800">{product.name.toUpperCase()}</h3>
+                    <p className="text-xs text-gray-600">{product.price}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 mx-0">
           {products.map((product) => (
             <div key={product.id} className="group cursor-pointer">
-                <div className="bg-gray-100 aspect-square mb-4 overflow-hidden relative">
+              <div className="bg-gray-100 aspect-square mb-4 overflow-hidden relative">
                 <Image
                   src={product.image || "/placeholder.svg"}
                   alt={product.name}
@@ -79,15 +114,15 @@ export default function ProductGridSection1() {
                 />
                 {product.hoverImage && (
                   <Image
-                  src={product.hoverImage}
-                  alt={product.name + " hover"}
-                  width={400}
-                  height={400}
-                  className="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                    src={product.hoverImage}
+                    alt={product.name + " hover"}
+                    width={400}
+                    height={400}
+                    className="w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
                   />
                 )}
-                </div>
-              <h3 className=" text-xs font-semibold mb-1 tracking-wide">{product.name.toUpperCase()}</h3>
+              </div>
+              <h3 className="text-xs font-semibold mb-1 tracking-wide">{product.name.toUpperCase()}</h3>
               <p className="text-xs text-gray-600">{product.price}</p>
             </div>
           ))}
