@@ -79,7 +79,7 @@ const products = [
 
 export default function ProductGridSection1() {
   return (
-    <section className="lg:pb-10 pb-5 mt-10  px-4 lg:px-6">
+    <section className="lg:pb-10 xl:pb-10 2xl:pb-10 pb-5 mt-10  px-4 lg:px-6 xl:px-6 2xl:px-6">
       <div className="container mx-auto">
         {/* Mobile Slider */}
         <div className="md:hidden">
@@ -89,7 +89,7 @@ export default function ProductGridSection1() {
                 <div key={product.id} className="flex-shrink-0 w-64">
                   <div className="group cursor-pointer">
                     <div className="bg-gray-100 aspect-square mb-3 overflow-hidden relative rounded-sm">
-                      <span className="absolute flex justify-center px-1 py-0.5 items-center font-normal top-2 left-2 bg-black text-white text-[6px] lg:text-[10px]  rounded-sm z-10">
+                      <span className="absolute flex justify-center px-1 py-0.5 items-center font-normal top-2 left-2 bg-black text-white text-[6px] lg:text-[10px] xl:text-[10px] 2xl:text-[10px]  rounded-sm z-10">
                   PERLE
                 </span>
                       <Image
@@ -119,7 +119,7 @@ export default function ProductGridSection1() {
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 mx-0">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-5 mx-0">
           {products.map((product) => (
             <div key={product.id} className="group cursor-pointer">
               <div className="bg-gray-100 aspect-square mb-4 overflow-hidden relative">

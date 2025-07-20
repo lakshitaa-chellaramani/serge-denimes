@@ -6,7 +6,8 @@ import { FiMenu, FiSearch, FiShoppingBag } from "react-icons/fi";
 export default function Hero() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showMenu, setShowMenu] = useState(true);
+  // State to track if the mouse is moving up
+  const [isMouseMovingUp, setIsMouseMovingUp] = useState(false);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -20,20 +21,37 @@ export default function Hero() {
     "MODERN RODEO",
   ];
 
+  // Effect for handling scroll behavior (for the main header)
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      setIsScrolled(currentScrollY > 100);
-      setShowMenu(currentScrollY <= 100 || currentScrollY < lastScrollY);
-
-      lastScrollY = currentScrollY;
+      setIsScrolled(window.scrollY > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Effect for handling mouse movement direction to show/hide the secondary nav
+  useEffect(() => {
+    let lastMouseY = 0;
+
+    const handleMouseMove = (e) => {
+      const currentMouseY = e.clientY;
+      
+      // Check if mouse is moving up or down
+      if (currentMouseY < lastMouseY) {
+        // Mouse moving up
+        setIsMouseMovingUp(true);
+      } else if (currentMouseY > lastMouseY) {
+        // Mouse moving down
+        setIsMouseMovingUp(false);
+      }
+      
+      lastMouseY = currentMouseY;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
@@ -48,17 +66,22 @@ export default function Hero() {
 
       {/* Hero Background */}
       <section className="fixed top-0 left-0 h-screen w-full flex flex-col justify-end text-white overflow-hidden -z-10">
-        {/* <img
+        <Image
           src="https://www.sergedenimes.com/cdn/shop/files/03_811b7584-f81b-4beb-818c-873b658db84e.jpg?v=1751445580&width=1946"
           alt="Modern Rodeo"
-          className="object-cover lg:block hidden object-center w-full h-full"
+          layout="fill"
+          objectFit="cover"
+          className="object-center hidden lg:block"
+          priority
         />
-        <img
-         
+        <Image
           src="https://www.sergedenimes.com/cdn/shop/files/01_0d6e8f02-7735-48a4-bc30-205107671dbb.jpg?v=1751362357&width=823"
           alt="Modern Rodeo"
-          className="object-cover  block lg:hidden w-full h-[50svh]"
-        /> */}
+          layout="fill"
+          objectFit="cover"
+          className="object-center block lg:hidden"
+          priority
+        />
         <div className="absolute inset-0 flex items-end justify-center">
           <div className="text-center text-white">
             <h1 className="text-2xl md:text-[22px] font-serif mb-4 tracking-wide">
@@ -73,20 +96,20 @@ export default function Hero() {
 
       {/* Navbar */}
       <header
-        className={`w-full py-4 px-4 md:px-8 flex items-center justify-between fixed  z-50 transition-all duration-300 ${
+        className={`w-full py-4 px-4 md:px-8 flex items-center justify-between fixed z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-white text-black top-5"
+            ? "bg-white text-black top-0"
             : "bg-transparent text-white top-0"
         }`}
       >
-        <button onClick={toggleSidebar} className={`text-2xl ${isScrolled ? " " : "mt-3"}`}>
+        <button onClick={toggleSidebar} className="text-2xl">
           <FiMenu />
         </button>
 
-        <div className="flex   items-center justify-center text-center">
+        <div className="flex items-center justify-center text-center">
           <h1
             className={`text-2xl lg:block hidden font-medium transition-colors duration-300 ${
-              isScrolled ? "text-black" : "text-white m-5 tracking-wide"
+              isScrolled ? "text-black" : "text-white pt-6 tracking-wide"
             }`}
           >
             SERGE DENIMES
@@ -98,20 +121,20 @@ export default function Hero() {
           />
         </div>
 
-        <div className={`text-xl flex items-center ${isScrolled ? " " : "mt-3"} gap-4`}>
+        <div className="text-xl flex items-center gap-4">
           <FiSearch className="cursor-pointer" />
           <FiShoppingBag className="cursor-pointer" />
         </div>
       </header>
 
-      {/* Nav Links */}
+      {/* Nav Links -- VISIBILITY LOGIC UPDATED HERE */}
       <nav
-        className={`md:flex hidden md:block  w-full py-2 mt-4 pb-6 font-normal tracking-wide px-4 md:px-8 text-xs justify-center space-x-6 fixed top-[64px] z-40 transition-all duration-300 ${
-          showMenu
+        className={`md:flex hidden w-full py-2 pb-6 font-normal tracking-wide px-4 md:px-8 text-xs justify-center space-x-6 fixed top-[64px] z-40 transition-all duration-300 ${
+            (!isScrolled || isMouseMovingUp) // Show if not scrolled OR mouse is moving up
             ? isScrolled
-              ? "opacity-100 pointer-events-auto shadow-md bg-white text-black "
-              : "opacity-100 pointer-events-auto bg-transparent text-white"
-            : "opacity-0 pointer-events-none"
+              ? "opacity-100 pointer-events-auto shadow-md bg-white text-black"
+              : "opacity-100 pointer-events-auto pt-7 bg-transparent text-white"
+            : "opacity-0 pointer-events-none -translate-y-4"
         }`}
       >
         {navLinks.map((link, index) => (
@@ -128,7 +151,7 @@ export default function Hero() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-full sm:w-[49svw] overflow-y-auto bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-full w-full md:w-[35svw] overflow-y-auto bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -178,11 +201,9 @@ export default function Hero() {
             <p className="cursor-pointer ">Privacy Policy</p>
           </div>
 
-          <span className="text-[10px] text-gray-900  py-10 pb-14">
+          <span className="text-[10px] text-gray-900 py-10 pb-14">
             ©2025 Serge DeNimes. All Rights Reserved.
           </span>
-        
-
         </div>
       </aside>
 

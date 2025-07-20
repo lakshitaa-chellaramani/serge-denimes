@@ -9,7 +9,7 @@ interface LoyaltyModalProps {
 export default function LoyaltyModal({ onClose }: LoyaltyModalProps) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center source-sans-3 z-50 ">
-      <div className="bg-white w-full max-w-3xl lg:min-h-[600px] h-screen  lg:max-h-[90vh] overflow-y-auto">
+      <div className="bg-white w-full max-w-3xl lg:min-h-[600px] xl:min-h-[600px] 2xl:min-h-[600px] h-screen  lg:max-h-[90vh] xl:max-h-[90vh] 2xl:max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="relative bg-black text-white text-center py-4">
           <h2 className="text-xl md:text-2xl px-8">

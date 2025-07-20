@@ -12,7 +12,7 @@ export default function CoreCollectionSection() {
             alt="Core Collection"
             fill
             style={{ objectFit: "cover" }}
-            className="hidden lg:block"
+            className="hidden lg:block xl:block 2xl:block"
             priority
           />
            <Image
@@ -20,7 +20,7 @@ export default function CoreCollectionSection() {
             alt="Core Collection"
             fill
             style={{ objectFit: "cover" }}
-            className="block lg:hidden"
+            className="block lg:hidden xl:hidden 2xl:hidden"
             priority
           />
 

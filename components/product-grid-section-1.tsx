@@ -64,7 +64,7 @@ const products = [
 
 export default function ProductGridSection1() {
   return (
-    <section className="lg:pb-10 pb-5 lg:-mt-14 -mt-20 px-4 lg:px-6">
+    <section className="lg:pb-10 xl:pb-10 2xl:pb-10 pb-5 lg:-mt-14 xl:-mt-14 2xl:-mt-14 xl:px-6 2xl:px-6 -mt-20 px-4 lg:px-6">
       <div className="container mx-auto">
         {/* Mobile Slider */}
         <div className="md:hidden">
@@ -101,7 +101,7 @@ export default function ProductGridSection1() {
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 mx-0">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-5 mx-0">
           {products.map((product) => (
             <div key={product.id} className="group cursor-pointer">
               <div className="bg-gray-100 aspect-square mb-4 overflow-hidden relative">

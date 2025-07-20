@@ -142,7 +142,7 @@ export default function TestimonialSlider() {
                     key={index}
                     className="min-w-full flex flex-col items-center justify-center"
                   >
-                    <blockquote className="text-base md:text-lg lg:text-xl leading-relaxed md:leading-none mb-3 px-4 md:px-52 font-thin font-serif italic text-black max-w-4xl">
+                    <blockquote className="text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-xl leading-relaxed md:leading-none mb-3 px-4 md:px-52 font-thin font-serif italic text-black max-w-4xl">
                       {testimonial.quote}
                     </blockquote>
                     <cite className="not-italic font-medium source-sans-3 text-sm tracking-wide text-black">
